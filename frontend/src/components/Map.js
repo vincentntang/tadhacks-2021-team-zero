@@ -5,7 +5,7 @@ export default function Map() {
     return (
         <div>
             <Card 
-                onClick={() => history.push('test')}
+                onClick={() => console.log('clicked on map')}
                 className="rounded shadow m-5 p-5 hover-card"
                 style={{height: '500px'}}
             >
