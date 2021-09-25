@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* navigation */
+.nav-link, .navbar-brand {
+    cursor: pointer;
+    font-size: 1.2em !important;
+    line-height: 1rem;
+    margin: 0 15px 0 15px;
+}
+/* home livestream cards */
+.hover-card {
+    cursor: pointer;
+}
+.hover-card:hover {
+    background-color: #f6f6f6;
+}
+
+.home-btn {
+    width: 6rem;
+}
+/* override Bootstrap light button hover for controls page */
+.btn-light:hover {
+    background-color: #e4e4e4 !important;
+}
+.control-btn {
+    width: 10rem;
+    height: 10rem;
+}
+.space-filler {
+    width: 10rem;
+    height: 10rem;
+}
+.control-box {
+    margin: 1rem;
+    width: 10rem !important;
+    height: 10rem !important;
+}
