@@ -27,6 +27,7 @@
     "workspaces": [
         "api",
         "web",
-        "@app/*"
+        "@app/*",
+        "frontend"
     ]
 }
