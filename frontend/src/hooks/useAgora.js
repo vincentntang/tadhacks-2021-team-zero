@@ -48,6 +48,7 @@ export default function useAgora(client) {
     setRemoteUsers(client.remoteUsers);
 
     const handleUserPublished = async (user, mediaType) => {
+        console.log('============ 1SUB')
       await client.subscribe(user, mediaType);
       // toggle rerender while state of remoteUsers changed.
       setRemoteUsers(remoteUsers => Array.from(client.remoteUsers));
@@ -56,6 +57,7 @@ export default function useAgora(client) {
       setRemoteUsers(remoteUsers => Array.from(client.remoteUsers));
     }
     const handleUserJoined = (user) => {
+        console.log('============ 1JOIN')
       setRemoteUsers(remoteUsers => Array.from(client.remoteUsers));
     }
     const handleUserLeft = (user) => {
@@ -66,11 +68,41 @@ export default function useAgora(client) {
     client.on('user-joined', handleUserJoined);
     client.on('user-left', handleUserLeft);
 
+    client.on("stream-removed", function(evt){
+        // let stream = evt.stream;
+        // let streamId = String(stream.getId());
+        // stream.close();
+        // removeVideoStream(streamId);
+    });
+    // Remove the corresponding view when a remote user leaves the channel.
+    client.on("peer-leave", function(evt){
+        // let stream = evt.stream;
+        // let streamId = String(stream.getId());
+        // stream.close();
+        // removeVideoStream(streamId);
+    });
+    
+    
+    const handleAdd = (evt) => {
+        console.log('========== 2add', evt)
+    }
+    const handleSub = (evt) => {
+        console.log('========== 2sub', evt)
+    }
+
+    client.on("stream-added", handleAdd);
+    client.on("stream-subscribed", handleSub);
+
     return () => {
       client.off('user-published', handleUserPublished);
       client.off('user-unpublished', handleUserUnpublished);
       client.off('user-joined', handleUserJoined);
       client.off('user-left', handleUserLeft);
+
+      client.off('stream-added', handleAdd);
+      client.off('stream-subscribed', handleSub);
+      client.off('stream-removed', () => console.log('remove'));
+      client.off('peer-leave', () => console.log('leave'));
     };
   }, [client]);
 

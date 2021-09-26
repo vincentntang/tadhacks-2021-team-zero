@@ -5,6 +5,10 @@ import MediaPlayer from './components/MediaPlayer';
 
 const client = AgoraRTC.createClient({ codec: 'h264', mode: 'rtc' });
 
+
+// sample of host livestream but docs seem old https://docs.agora.io/en/Video/start_live_web?platform=Android
+// working rtc connection github https://github.com/AgoraIO/API-Examples-Web
+
 // TODO: remove duplication
 const config = {
     appId: process.env.REACT_APP_APP_ID,
