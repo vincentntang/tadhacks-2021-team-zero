@@ -4893,7 +4893,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"agora-rtc-sdk-ng@npm:^4.3.0":
+"agora-rtc-sdk-ng@npm:^4.3.0, agora-rtc-sdk-ng@npm:^4.7.1":
   version: 4.7.1
   resolution: "agora-rtc-sdk-ng@npm:4.7.1"
   checksum: 29beea658c78baa7cc8f6c4bd85e149467c2a3122d53299676d04e6a126a7dfdb70cff6396b15065c7b277cfbc5da26e6e2ee3a1e2f40f12fe9e9f0b407cd3af
@@ -9741,6 +9741,7 @@ __metadata:
   resolution: "frontend@workspace:frontend"
   dependencies:
     agora-rtc-sdk: ^3.6.5
+    agora-rtc-sdk-ng: ^4.7.1
     agora-stream-player: ^1.2.0
     axios: ^0.21.4
     bootstrap: 5.1.1

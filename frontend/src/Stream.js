@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form'
 import { Controller } from 'react-bootstrap-icons'
 import Controls from './components/Controls'
 import StreamPlayer from 'agora-stream-player'
+import Spinner from 'react-bootstrap/Spinner'
 // import StreamPlayer from 'agora-stream-player'
 
 // <StreamPlayer stream={localStream} fit="contain" label="local" />
@@ -25,6 +26,11 @@ export default function Stream() {
     const [channelName, setChannelName] = useState("main")
     const [showControls, setShowControls] = useState()
 
+    function handleControls(e) {
+        e.stopPropagation()
+        setShowControls(!showControls)
+    }
+
     return (
         <>
             {/* <h1 className="display-4">Stream</h1> */}
@@ -35,7 +41,7 @@ export default function Stream() {
             <VideoCall channelName={channelName} />
             {showControls && <Controls />}
             <div>
-                <Button variant="outline-secondary" className="w-50 mx-auto d-block mt-4" onClick={() => setShowControls(!showControls)}>
+                <Button variant="outline-secondary" className="w-50 mx-auto d-block mt-4" onClick={handleControls}>
                     <Controller className="me-2 mb-1" size={22} />
                     {`${showControls ? 'Hide' : 'Show'}`} Controls
                 </Button>
@@ -92,10 +98,8 @@ const VideoCall = ({ channelName }) => {
     }, [])
 
     useEffect(() => {
-        console.log('cl', client)
         // function to initialise the SDK
         let init = async (name) => {
-            console.log('================ what is name', name)
             await client.join(config.appId, channelName, config.token, null)
                 .then(res => {
                     streamID = res
@@ -173,7 +177,8 @@ const VideoCall = ({ channelName }) => {
                 onChange={toggleChannel}
             />
           )} */}
-          {stream && <StreamPlayer
+        {stream 
+            ? <StreamPlayer
             key={streamID} 
             video={true} 
             audio={true} 
@@ -182,7 +187,13 @@ const VideoCall = ({ channelName }) => {
             label="Live Stream"  
             style={{maxHeight: '800px', minHeight: '500px'}}
             className="mx-auto w-100"
-        />}
+            />
+            : <Spinner
+            animation="border"
+            variant="info"
+            style={{display: 'block', margin: '20% auto 0 auto'}}
+          />
+        }
           {/* <AgoraVideoPlayer videoTrack={tracks[1]} style={{height: '400px', width: '712px'}} className="mx-auto" /> */}
           {/* {(showStream && tracks) 
             ? <AgoraVideoPlayer videoTrack={tracks[1]} style={{height: '400px', width: '712px'}} className="mx-auto" />
