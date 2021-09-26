@@ -146,10 +146,6 @@ const VideoCall = ({ channelName }) => {
     
     }, [client])
 
-    function print() {
-        console.log('=== stream', stream)
-    }
-
     // const toggleChannel = async e => {
     //     console.log('================== check =', e.target.checked, '================')
     //     setShowStream(!showStream)
@@ -177,7 +173,6 @@ const VideoCall = ({ channelName }) => {
                 onChange={toggleChannel}
             />
           )} */}
-          <h1 onClick={print}>place</h1>
           {stream && <StreamPlayer
             key={streamID} 
             video={true} 
@@ -185,7 +180,8 @@ const VideoCall = ({ channelName }) => {
             stream={stream}
             fit="contain"
             label="Live Stream"  
-            style={{width: '712px', height: '400px'}}
+            style={{maxHeight: '800px', minHeight: '500px'}}
+            className="mx-auto w-100"
         />}
           {/* <AgoraVideoPlayer videoTrack={tracks[1]} style={{height: '400px', width: '712px'}} className="mx-auto" /> */}
           {/* {(showStream && tracks) 

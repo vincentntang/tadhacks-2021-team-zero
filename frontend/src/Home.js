@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Map from './components/Map'
 import Stream from './Stream'
+import axios from 'axios'
 
 export default function App() {
     const history = useHistory()
@@ -52,7 +53,7 @@ export default function App() {
                     <Button className="mx-auto d-block home-btn" onClick={setManual}>Manual</Button>
                 </Col>
                 <Col className="p-3">
-                    <Button className="mx-auto d-block home-btn">Map</Button>
+                    <Button className="mx-auto d-block home-btn" disabled>Map</Button>
                 </Col>
             </Row>
             <Map />
