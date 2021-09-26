@@ -91,7 +91,7 @@ export default function Bars({ data, screen }) {
         <Col md={3}>
           <Form className="pt-2">
             <Form.Group controlId="year">
-              <Form.Control as="select" size="sm" custom value={'2021'} onChange={() => console.log('clicked on dropdown')}>
+              <Form.Control as="select" size="sm" value={'2021'} onChange={() => console.log('clicked on dropdown')}>
                 {['2021', '2020']}
               </Form.Control>
             </Form.Group>

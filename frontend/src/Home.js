@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { useHistory } from "react-router-dom"
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Map from './components/Map'
+import Stream from './Stream'
 
 export default function App() {
     const history = useHistory()
@@ -15,14 +15,12 @@ export default function App() {
     }, [])
 
     return (
-        <Container>
-            <h1 className="display-4 text-center">Rescurer</h1>
+        <>
+            {/* <h1 className="display-4 text-center">Rescurer</h1> */}
             <Card 
-                onClick={() => history.push('/stream')}
                 className="rounded shadow m-5 p-5 hover-card"
-                style={{height: '500px'}}
             >
-                LiveStream
+                <Stream />
             </Card>
             <Row>
                 <Col className="p-3">
@@ -47,6 +45,6 @@ export default function App() {
                 </Col>
             </Row>
             <Map />
-        </Container>
+        </>
     );
 }
