@@ -4907,6 +4907,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"agora-stream-player@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "agora-stream-player@npm:1.2.0"
+  peerDependencies:
+    agora-rtc-sdk: ">=2.4.x"
+    react: 16.x
+  checksum: 11f52e9fa7f2b9b308ba6483d25fad51050886107a30586ef3c81d1f9b1d0f53670d8a5b8a4c9a3362e3ab77efe1b0331643837aa415bc5a0768d1bde9bd0492
+  languageName: node
+  linkType: hard
+
 "ajv-errors@npm:^1.0.0":
   version: 1.0.1
   resolution: "ajv-errors@npm:1.0.1"
@@ -5107,6 +5117,7 @@ __metadata:
     "@types/node": ^13.9.1
     "@types/supertest": ^2.0.8
     "@yarnpkg/pnpify": "*"
+    axios: ^0.21.4
     class-transformer: ^0.3.2
     class-validator: ^0.13.1
     debug: "*"
@@ -9730,6 +9741,7 @@ __metadata:
   resolution: "frontend@workspace:frontend"
   dependencies:
     agora-rtc-sdk: ^3.6.5
+    agora-stream-player: ^1.2.0
     axios: ^0.21.4
     bootstrap: 5.1.1
     chart.js: ^3.5.1
