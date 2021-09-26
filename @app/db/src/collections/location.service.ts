@@ -96,6 +96,7 @@ export namespace LocationService {
 
         @ApiProperty()
         coordInstance?: number
+        // annotate and merge
 
         @ApiProperty()
         createdOn: Date;
