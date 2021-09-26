@@ -27,69 +27,85 @@ export class RescuerController {
     constructor(
         private readonly commandsCollection: Collections.CommandsService,
         private readonly settingsCollection: Collections.SettingsService,
-        private readonly sensorCollection: Collections.SensorService,
-        private readonly locationCollection: Collections.LocationService,
+        private readonly dataCollection: Collections.DataService,
+        private readonly locationsCollection: Collections.LocationsService,
         private readonly alarmsCollection: Collections.AlarmsService,
     ) { }
-    @Get("sensor-data")
-    @ApiOperation({ summary: 'Check Sensor Data' }) // annotating on openapi/swagger
-    @ApiOkResponse({ description: 'The Sensor Data', type: [dto.RescuerSensorDataResponse] }) // annotating on openapi/swagger
-    getSensorData(): dto.RescuerSensorDataResponse[] { // name doesn't matter
-        log("Sensor Data Ran")
+    @Get("data") // Sensor Data
+    @ApiOperation({ summary: 'Check Data Data' }) // annotating on openapi/swagger
+    @ApiOkResponse({ description: 'The Data Data', type: [dto.RescuerDataResponse] }) // annotating on openapi/swagger
+    async getData(): Promise<any> { // name doesn't matter
+        log("Data Data Ran")
+        log("This ran")
+        const result = await this.dataCollection.list();
+        log(result, "SENSOR DATA from DB")
+        return result;
         // Grab the data from database
-        return [
-            {
-                timestamp: "123",
-                smoke: 123,
-                temperature: 123
-            },
-            {
-                timestamp: "123",
-                smoke: 123,
-                temperature: 123
-            },
-        ]
+        // return [
+        //     {
+        //         timestamp: "123",
+        //         smoke: 123,
+        //         temperature: 123
+        //     },
+        //     {
+        //         timestamp: "123",
+        //         smoke: 123,
+        //         temperature: 123
+        //     },
+        // ]
     }
 
-    @Get("gps")
+    @Get("locations")
     @ApiOperation({ summary: 'Check GPS Data' }) // annotating on openapi/swagger
     @ApiOkResponse({ description: 'The GPS Data', type: dto.RescuerGpsResponse }) // annotating on openapi/swagger
-    getGps(): dto.RescuerGpsResponse { // name doesn't matter
+    async getGps(): Promise<any> { // name doesn't matter
         log("This ran")
-        return {
-            long: 123.555,
-            lat: 125.44
-        }
+        const result = await this.locationsCollection.list();
+        log(result, "GPS DATA from DB")
+        return result;
+        // return {
+        //     long: 123.555,
+        //     lat: 125.44
+        // }
     }
 
     @Get("robot-status")
     @ApiOperation({ summary: 'Check Robot Status Data' }) // annotating on openapi/swagger
     @ApiOkResponse({ description: 'The Robot Status Data', type: dto.RescuerStatusResponse }) // annotating on openapi/swagger
-    getRobotStatus(): dto.RescuerStatusResponse { // name doesn't matter
+    async getRobotStatus(): Promise<any> { // name doesn't matter
         log("This ran")
-        return {
-            isAuto: false
-        }
+        const result = await this.settingsCollection.list();
+        log(result, "SETTINGS DATA from DB")
+        return result;
+        // return {
+        //     isAuto: false
+        // }
     }
 
 
-    @Get("location-alarms")
-    @ApiOperation({ summary: 'Check Location Alarms Data' }) // annotating on openapi/swagger
-    @ApiOkResponse({ description: 'The Location Alarms Data', type: [dto.RescuerLocationAlarmResponse] }) // annotating on openapi/swagger
-    getLocationAlarmStatus(): dto.RescuerLocationAlarmResponse[] { // name doesn't matter
+    @Get("alarms")
+    @ApiOperation({ summary: 'Check Locations Alarms Data' }) // annotating on openapi/swagger
+    @ApiOkResponse({ description: 'The Locations Alarms Data', type: [dto.RescuerLocationsAlarmResponse] }) // annotating on openapi/swagger
+    async getLocationsAlarmStatus(): Promise<any> { // name doesn't matter
         log("This ran")
-        return [
-            {
-                type: "sound",
-                x: 15,
-                y: 10
-            },
-            {
-                type: "sound",
-                x: 15,
-                y: 10
-            }
-        ]
+
+        // get data from database
+        // const result = await this.commandsCollection.insertOne(...params);
+        const result = await this.alarmsCollection.list();
+        log(result, "ALARMS DATA from DB")
+        return result;
+        // return [ 
+        //     {
+        //         type: "sound",
+        //         x: 15,
+        //         y: 10
+        //     },
+        //     {
+        //         type: "sound",
+        //         x: 15,
+        //         y: 10
+        //     }
+        // ]
     }
 
     @Post('robot-status')

@@ -13,10 +13,10 @@
 // Alarm Data (FIRE SOUND)
 // timestamp, type: fire/sound, coordinate system (0,1000)
 
-// Sensor Data ( SMOKE TEMPERATURE)
+// Data Data ( SMOKE TEMPERATURE)
 // timestamp, smoke, temperature
 
-// Location table (GPS)
+// Locations table (GPS)
 // last GPS coordinates timestamp
 
 import { Injectable, Inject } from '@nestjs/common';
