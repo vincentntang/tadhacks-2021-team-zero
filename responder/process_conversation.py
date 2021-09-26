@@ -99,8 +99,8 @@ def get_transcript(response):
 # # Test
 if __name__ == '__main__':
     OBJ_PATH = './responder/Welcome.mp3'
-    APP_ID = "4c4f68426c69724362634b5045413665583072324176336f7142324370627956"
-    APP_SECRET = "474e34625449467238786c73756b793077466849764371503070722d695148594c755138394c6161616c574b5a44444545474870376648427a50344171376779"
+    APP_ID = ""
+    APP_SECRET = ""
     ACCESS_TOKEN = get_access_token(APP_ID, APP_SECRET)
     conversation_object = get_conversation_object_from_file(APP_ID, APP_SECRET, OBJ_PATH)
     # # Get the message from the conversation
