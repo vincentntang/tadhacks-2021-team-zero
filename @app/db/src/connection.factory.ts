@@ -22,7 +22,7 @@ export const connectionFactory = {
             client.connect((err) => {
                 if (err) return reject(err);
                 log('Connected to mongodb.');
-                const db = client.db('main');
+                const db = client.db('RescueR');
                 return resolve({ client, db });
             });
         });
