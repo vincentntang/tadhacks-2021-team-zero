@@ -22,7 +22,7 @@ export const connectionFactory = {
             client.connect((err) => {
                 if (err) return reject(err);
                 log('Connected to mongodb.');
-                const db = client.db('RescueR');
+                const db = client.db('RescueR'); // This is the DATABASE in MongoDB Atlas (change it for every project)
                 return resolve({ client, db });
             });
         });

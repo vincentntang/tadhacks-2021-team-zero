@@ -24,6 +24,17 @@ Add the following tables in a mongo DB
 - commands
 - connections
 - data
-- locations
+- locationss
 - test
 - users
+
+## Notes for install.
+
+In API Folder
+
+```
+yarn build
+yarn start:dev
+```
+
+to initialize it
