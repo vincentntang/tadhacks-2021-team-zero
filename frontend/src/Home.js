@@ -30,7 +30,7 @@ export default function App() {
         <>
             {/* <h1 className="display-4 text-center">Rescurer</h1> */}
             <Card 
-                className="rounded shadow m-5 p-5 hover-card"
+                className="rounded shadow m-5 p-5 hover-card" onClick={() => history.push('/test')}
             >
                 <Stream />
             </Card>
