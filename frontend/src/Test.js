@@ -28,6 +28,7 @@ export default function Test() {
   console.log('user', remoteUsers)
   return (
     <div className='call my-5'>
+        <p>Host can join from a codesandbox <a href="https://codesandbox.io/s/distracted-dust-cedq0?file=/src/App.js">here</a></p>
     <div className='button-group'>
         <button id='join' type='button' className='btn btn-primary btn-sm me-2' disabled={joinState} onClick={() => {join(config.appId, config.channel, config.token)}}>Join</button>
         <button id='leave' type='button' className='btn btn-primary btn-sm' disabled={!joinState} onClick={() => {leave()}}>Leave</button>
@@ -39,7 +40,7 @@ export default function Test() {
         </div>
         {remoteUsers.map(user => (<div className='remote-player-wrapper' key={user.uid}>
             <p className='remote-player-text'>{`ID = ${user.uid}`}</p>
-            <MediaPlayer videoTrack={user.videoTrack} audioTrack={user.audioTrack}></MediaPlayer>
+            <MediaPlayer videoTrack={user.videoTrack} audioTrack={user.audioTrack} style={{width: '600px', height: '450px'}}></MediaPlayer>
           </div>))}
       </div>
     </div>

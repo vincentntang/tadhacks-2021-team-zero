@@ -9,6 +9,7 @@ import axios from 'axios'
 export default function Controls() {
 
     function go(input) {
+        e.stopPropagation()
         axios.post('http://localhost:4000/rescuer/direction-input', {input})
             .then(res => console.log(res.data))
             .catch(err => console.log('err', err))
@@ -21,7 +22,7 @@ export default function Controls() {
                         <div className="space-filler"></div>
                     </div>
                     <div className="control-box">
-                        <Button variant="light" className="control-btn" onClick={() => go('up')}>
+                        <Button  className="control-btn" onClick={e => go(e, 'up')}>
                             <ArrowUp size={20} />
                         </Button>
                     </div>
@@ -31,18 +32,18 @@ export default function Controls() {
                 </Row>
                 <Row className="justify-content-md-center">
                     <div className="control-box">
-                        <Button variant="light" className="control-btn" onClick={() => go('left')}>
+                        <Button  className="control-btn" onClick={e => go(e, 'left')}>
                             <ArrowLeft size={20} />
                         </Button>
                     </div>
                     <div className="control-box">
                         {/* <div className="space-filler"></div> */}
-                        <Button variant="light" className="control-btn" onClick={() => go('stop')}>
+                        <Button  className="control-btn" onClick={e => go(e, 'stop')}>
                             <Octagon size={24} />
                         </Button>
                     </div>
                     <div className="control-box">
-                        <Button variant="light" className="control-btn" onClick={() => go('right')}>
+                        <Button  className="control-btn" onClick={e => go(e, 'right')}>
                             <ArrowRight size={20} />
                         </Button>
                     </div>
@@ -52,7 +53,7 @@ export default function Controls() {
                         <div className="space-filler"></div>
                     </div>
                     <div className="control-box">
-                        <Button variant="light" className="control-btn" onClick={() => go('down')}>
+                        <Button  className="control-btn" onClick={e => go(e, 'down')}>
                             <ArrowDown size={20} />
                         </Button>
                     </div>

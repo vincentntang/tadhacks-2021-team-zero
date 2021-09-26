@@ -110,6 +110,6 @@ if __name__ == '__main__':
     response = get_response_from_id(ACCESS_TOKEN, CONVERSATION_ID)
     transcript = get_transcript(response)
     # # Write to file
-    with open('./responder/transcript.txt', 'w') as file_out:
+    with open('./transcript.txt', 'w') as file_out:
         file_out.write(transcript)
     exit()
