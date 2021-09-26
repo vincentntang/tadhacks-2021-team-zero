@@ -10,7 +10,11 @@ export enum CollectionName {
     Accounts = 'accounts',
     Tokens = 'tokens',
     Rescuer = 'rescuer',
-    Commands = 'commands'
+    Alarms = 'alarms',
+    Commands = 'commands',
+    Data = 'data',
+    Locations = 'locations',
+    Settings = 'settings'
 }
 
 export function collectionFactory<T>(collectionName: CollectionName, ensureIndexes: (collection: Collection<T>) => void) {

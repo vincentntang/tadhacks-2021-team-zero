@@ -32,7 +32,7 @@ const log = debug(`${pkg.name}:${path.basename(__filename)}`)
 
 type Record = CommandsService.Record;
 
-const COLLECTION = CollectionName.Rescuer;
+const COLLECTION = CollectionName.Commands;
 
 export const collectionProvider = collectionFactory<Record>(COLLECTION, ensureIndexes);
 async function ensureIndexes(collection: Collection<Record>) {

@@ -32,7 +32,7 @@ const log = debug(`${pkg.name}:${path.basename(__filename)}`)
 
 type Record = AlarmsService.Record;
 
-const COLLECTION = CollectionName.Rescuer;
+const COLLECTION = CollectionName.Alarms;
 
 export const collectionProvider = collectionFactory<Record>(COLLECTION, ensureIndexes);
 async function ensureIndexes(collection: Collection<Record>) {

@@ -32,7 +32,7 @@ const log = debug(`${pkg.name}:${path.basename(__filename)}`)
 
 type Record = DataService.Record;
 
-const COLLECTION = CollectionName.Rescuer;
+const COLLECTION = CollectionName.Data; // Maps to one table
 
 export const collectionProvider = collectionFactory<Record>(COLLECTION, ensureIndexes);
 async function ensureIndexes(collection: Collection<Record>) {
