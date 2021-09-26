@@ -32,7 +32,7 @@ const log = debug(`${pkg.name}:${path.basename(__filename)}`)
 
 type Record = CommandsService.Record;
 
-const COLLECTION = CollectionName.Rescuer;
+const COLLECTION = CollectionName.Commands;
 
 export const collectionProvider = collectionFactory<Record>(COLLECTION, ensureIndexes);
 async function ensureIndexes(collection: Collection<Record>) {
@@ -71,7 +71,7 @@ export namespace CommandsService {
     // TODO - make CommandsService for database record (1)
     // Need one of these for every single collection
 
-    export class CommandDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {
+    export class CommandsDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {
         @ApiProperty()
         _id: string;
 

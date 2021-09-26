@@ -32,7 +32,7 @@ const log = debug(`${pkg.name}:${path.basename(__filename)}`)
 
 type Record = LocationsService.Record;
 
-const COLLECTION = CollectionName.Rescuer;
+const COLLECTION = CollectionName.Locations;
 
 export const collectionProvider = collectionFactory<Record>(COLLECTION, ensureIndexes);
 async function ensureIndexes(collection: Collection<Record>) {
@@ -75,7 +75,7 @@ export namespace LocationsService {
     // TODO - make LocationsService for database record (1)
     // Need one of these for every single collection
 
-    export class CommandDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {
+    export class LocationsDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {
         @ApiProperty()
         _id: string;
 
