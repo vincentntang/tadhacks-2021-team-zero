@@ -1,5 +1,5 @@
 """
-Get Transcript from file
+Get Transcript and Action Items from audio file/url
 """
 import requests
 import json
@@ -42,28 +42,32 @@ def get_access_token(appId, appSecret):
                Debug Message => " + str(response.text))
     return access_token
 
-def get_conversation_object(app_id, app_secret, obj_type, obj_path):
-    """Generate conversation object from audio file or url"""
+
+
+def get_conversation_object_from_file(app_id, app_secret, obj_path):
+    """Generate conversation object from audio file"""
     # # Process file and get conversation object
-    if obj_type == 'file':
-        conversation_object = symbl.Audio.process_file(file_path=obj_path,
-                                                       credentials={'app_id': app_id, 'app_secret': app_secret})
-        return conversation_object
-    elif obj_type == 'url':
-        conversation_object = symbl.Audio.process_url(payload={'url': obj_path},
-                                                      credentials={'app_id': app_id, 'app_secret': app_secret})
-        return conversation_object
-    return None
+    conversation_object = symbl.Audio.process_file(file_path=obj_path,
+                                                    credentials={'app_id': app_id, 'app_secret': app_secret})
+    return conversation_object
+
+def get_conversation_object_from_url(app_id, app_secret, obj_path):
+    """Generate conversation object from audio url"""
+    # # Process file and get conversation object
+    conversation_object = symbl.Audio.process_url(payload={'url': obj_path},
+                                                    credentials={'app_id': app_id, 'app_secret': app_secret})
+    return conversation_object
 
 # # Test
 if __name__ == '__main__':
-    obj_type = 'file'
-    obj_path = './python/Welcome.mp3'
-    APP_ID = "4c4f68426c69724362634b5045413665583072324176336f7142324370627956"
-    APP_SECRET = "474e34625449467238786c73756b793077466849764371503070722d695148594c755138394c6161616c574b5a44444545474870376648427a50344171376779"
+    OBJ_PATH = './responder/Welcome.mp3'
+    APP_ID = ""
+    APP_SECRET = ""
     # ACCESS_TOKEN = get_access_token(APP_ID, APP_SECRET)
-    conversation_object = get_conversation_object(APP_ID, APP_SECRET, obj_type, obj_path)
+    conversation_object = get_conversation_object_from_file(APP_ID, APP_SECRET, OBJ_PATH)
     # # To get the message from the conversation
     messages = conversation_object.get_messages()
-    print(messages)
+    # # Write to file
+    # with open('transcript.txt', 'w') as file_out:
+    #     file_out.write(str(messages))
     exit()
