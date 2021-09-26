@@ -17,10 +17,22 @@ export class RescuerSensorDataResponse {
 }
 export class RescuerGpsResponse {
     @ApiProperty()
+    readonly timestamp!: number;
+
+    @ApiProperty()
     readonly long!: number;
 
     @ApiProperty()
     readonly lat!: number;
+
+    @ApiProperty()
+    readonly coordX!: number;
+
+    @ApiProperty()
+    readonly coordY!: number;
+
+    @ApiProperty()
+    readonly coordInstance!: number;
 }
 
 export class RescuerStatusResponse {
@@ -29,14 +41,35 @@ export class RescuerStatusResponse {
 }
 
 export class RescuerLocationAlarmResponse {
+    // @ApiProperty()
+    // readonly type!: string;
+
+    // @ApiProperty()
+    // readonly x!: number;
+
+    // @ApiProperty()
+    // readonly y!: number
+
+    @ApiProperty()
+    readonly timestamp!: string;
+
     @ApiProperty()
     readonly type!: string;
 
     @ApiProperty()
-    readonly x!: number;
+    readonly coordInstance!: number
 
     @ApiProperty()
-    readonly y!: number
+    readonly coordX!: number
+
+    @ApiProperty()
+    readonly coordY!: number
+
+    @ApiProperty()
+    readonly relX!: number
+
+    @ApiProperty()
+    readonly relY!: number
 }
 
 // POST request

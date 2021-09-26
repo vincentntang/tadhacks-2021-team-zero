@@ -5107,6 +5107,7 @@ __metadata:
     "@types/node": ^13.9.1
     "@types/supertest": ^2.0.8
     "@yarnpkg/pnpify": "*"
+    axios: ^0.21.4
     class-transformer: ^0.3.2
     class-validator: ^0.13.1
     debug: "*"

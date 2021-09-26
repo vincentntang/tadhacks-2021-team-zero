@@ -34,62 +34,78 @@ export class RescuerController {
     @Get("sensor-data")
     @ApiOperation({ summary: 'Check Sensor Data' }) // annotating on openapi/swagger
     @ApiOkResponse({ description: 'The Sensor Data', type: [dto.RescuerSensorDataResponse] }) // annotating on openapi/swagger
-    getSensorData(): dto.RescuerSensorDataResponse[] { // name doesn't matter
+    async getSensorData(): Promise<any> { // name doesn't matter
         log("Sensor Data Ran")
+        log("This ran")
+        const result = await this.sensorCollection.list();
+        log(result, "SENSOR DATA from DB")
+        return result;
         // Grab the data from database
-        return [
-            {
-                timestamp: "123",
-                smoke: 123,
-                temperature: 123
-            },
-            {
-                timestamp: "123",
-                smoke: 123,
-                temperature: 123
-            },
-        ]
+        // return [
+        //     {
+        //         timestamp: "123",
+        //         smoke: 123,
+        //         temperature: 123
+        //     },
+        //     {
+        //         timestamp: "123",
+        //         smoke: 123,
+        //         temperature: 123
+        //     },
+        // ]
     }
 
-    @Get("gps")
+    @Get("location")
     @ApiOperation({ summary: 'Check GPS Data' }) // annotating on openapi/swagger
     @ApiOkResponse({ description: 'The GPS Data', type: dto.RescuerGpsResponse }) // annotating on openapi/swagger
-    getGps(): dto.RescuerGpsResponse { // name doesn't matter
+    async getGps(): Promise<any> { // name doesn't matter
         log("This ran")
-        return {
-            long: 123.555,
-            lat: 125.44
-        }
+        const result = await this.locationCollection.list();
+        log(result, "GPS DATA from DB")
+        return result;
+        // return {
+        //     long: 123.555,
+        //     lat: 125.44
+        // }
     }
 
     @Get("robot-status")
     @ApiOperation({ summary: 'Check Robot Status Data' }) // annotating on openapi/swagger
     @ApiOkResponse({ description: 'The Robot Status Data', type: dto.RescuerStatusResponse }) // annotating on openapi/swagger
-    getRobotStatus(): dto.RescuerStatusResponse { // name doesn't matter
+    async getRobotStatus(): Promise<any> { // name doesn't matter
         log("This ran")
-        return {
-            isAuto: false
-        }
+        const result = await this.settingsCollection.list();
+        log(result, "SETTINGS DATA from DB")
+        return result;
+        // return {
+        //     isAuto: false
+        // }
     }
 
 
-    @Get("location-alarms")
+    @Get("alarms")
     @ApiOperation({ summary: 'Check Location Alarms Data' }) // annotating on openapi/swagger
     @ApiOkResponse({ description: 'The Location Alarms Data', type: [dto.RescuerLocationAlarmResponse] }) // annotating on openapi/swagger
-    getLocationAlarmStatus(): dto.RescuerLocationAlarmResponse[] { // name doesn't matter
+    async getLocationAlarmStatus(): Promise<any> { // name doesn't matter
         log("This ran")
-        return [
-            {
-                type: "sound",
-                x: 15,
-                y: 10
-            },
-            {
-                type: "sound",
-                x: 15,
-                y: 10
-            }
-        ]
+
+        // get data from database
+        // const result = await this.commandsCollection.insertOne(...params);
+        const result = await this.alarmsCollection.list();
+        log(result, "ALARMS DATA from DB")
+        return result;
+        // return [ 
+        //     {
+        //         type: "sound",
+        //         x: 15,
+        //         y: 10
+        //     },
+        //     {
+        //         type: "sound",
+        //         x: 15,
+        //         y: 10
+        //     }
+        // ]
     }
 
     @Post('robot-status')
