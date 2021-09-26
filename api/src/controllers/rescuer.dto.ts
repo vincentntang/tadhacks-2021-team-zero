@@ -5,7 +5,7 @@ import { IsEmail, IsNotEmpty, MinLength, IsOptional } from 'class-validator';
 // this is one object
 // GET - REQUEST
 
-export class RescuerSensorDataResponse {
+export class RescuerDataResponse {
     @ApiProperty()
     readonly timestamp!: string;
 

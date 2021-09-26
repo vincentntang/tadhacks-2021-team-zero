@@ -27,17 +27,17 @@ export class RescuerController {
     constructor(
         private readonly commandsCollection: Collections.CommandsService,
         private readonly settingsCollection: Collections.SettingsService,
-        private readonly sensorCollection: Collections.SensorService,
+        private readonly dataCollection: Collections.DataService,
         private readonly locationsCollection: Collections.LocationsService,
         private readonly alarmsCollection: Collections.AlarmsService,
     ) { }
-    @Get("sensor-data")
-    @ApiOperation({ summary: 'Check Sensor Data' }) // annotating on openapi/swagger
-    @ApiOkResponse({ description: 'The Sensor Data', type: [dto.RescuerSensorDataResponse] }) // annotating on openapi/swagger
-    async getSensorData(): Promise<any> { // name doesn't matter
-        log("Sensor Data Ran")
+    @Get("data") // Sensor Data
+    @ApiOperation({ summary: 'Check Data Data' }) // annotating on openapi/swagger
+    @ApiOkResponse({ description: 'The Data Data', type: [dto.RescuerDataResponse] }) // annotating on openapi/swagger
+    async getData(): Promise<any> { // name doesn't matter
+        log("Data Data Ran")
         log("This ran")
-        const result = await this.sensorCollection.list();
+        const result = await this.dataCollection.list();
         log(result, "SENSOR DATA from DB")
         return result;
         // Grab the data from database
