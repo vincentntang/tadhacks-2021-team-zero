@@ -14,6 +14,17 @@ export default function App() {
     useEffect(() => {
     }, [])
 
+    function setAuto() {
+        axios.post('http://localhost:4000/rescuer/robot-status', {isAuto: 'true'})
+            .then(res => console.log(res.data))
+            .catch(err => console.log('err', err))
+    }
+    function setManual() {
+        axios.post('http://localhost:4000/rescuer/robot-status', {isAuto: 'false'})
+            .then(res => console.log(res.data))
+            .catch(err => console.log('err', err))
+    }
+
     return (
         <>
             {/* <h1 className="display-4 text-center">Rescurer</h1> */}
@@ -35,10 +46,10 @@ export default function App() {
             </Row>
             <Row>
                 <Col className="p-3">
-                    <Button className="mx-auto d-block home-btn" onClick={() => history.push('/controls')}>Auto</Button>
+                    <Button className="mx-auto d-block home-btn" onClick={setAuto}>Auto</Button>
                 </Col>
                 <Col className="p-3">
-                    <Button className="mx-auto d-block home-btn" onClick={() => history.push('/controls')}>Manual</Button>
+                    <Button className="mx-auto d-block home-btn" onClick={setManual}>Manual</Button>
                 </Col>
                 <Col className="p-3">
                     <Button className="mx-auto d-block home-btn">Map</Button>

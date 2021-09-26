@@ -184,7 +184,8 @@ const VideoCall = ({ channelName }) => {
             audio={true} 
             stream={stream}
             fit="contain"
-            label="A stream"  
+            label="Live Stream"  
+            style={{width: '712px', height: '400px'}}
         />}
           {/* <AgoraVideoPlayer videoTrack={tracks[1]} style={{height: '400px', width: '712px'}} className="mx-auto" /> */}
           {/* {(showStream && tracks) 
