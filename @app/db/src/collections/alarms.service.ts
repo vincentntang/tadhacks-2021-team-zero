@@ -16,7 +16,7 @@
 // Sensor Data ( type relX)
 // timestamp, type, relX
 
-// Location table (GPS)
+// Locations table (GPS)
 // last GPS coordinates timestamp
 
 import { Injectable, Inject } from '@nestjs/common';

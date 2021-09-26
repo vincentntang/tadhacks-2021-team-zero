@@ -28,7 +28,7 @@ export class RescuerController {
         private readonly commandsCollection: Collections.CommandsService,
         private readonly settingsCollection: Collections.SettingsService,
         private readonly sensorCollection: Collections.SensorService,
-        private readonly locationCollection: Collections.LocationService,
+        private readonly locationsCollection: Collections.LocationsService,
         private readonly alarmsCollection: Collections.AlarmsService,
     ) { }
     @Get("sensor-data")
@@ -55,12 +55,12 @@ export class RescuerController {
         // ]
     }
 
-    @Get("location")
+    @Get("locations")
     @ApiOperation({ summary: 'Check GPS Data' }) // annotating on openapi/swagger
     @ApiOkResponse({ description: 'The GPS Data', type: dto.RescuerGpsResponse }) // annotating on openapi/swagger
     async getGps(): Promise<any> { // name doesn't matter
         log("This ran")
-        const result = await this.locationCollection.list();
+        const result = await this.locationsCollection.list();
         log(result, "GPS DATA from DB")
         return result;
         // return {
@@ -84,9 +84,9 @@ export class RescuerController {
 
 
     @Get("alarms")
-    @ApiOperation({ summary: 'Check Location Alarms Data' }) // annotating on openapi/swagger
-    @ApiOkResponse({ description: 'The Location Alarms Data', type: [dto.RescuerLocationAlarmResponse] }) // annotating on openapi/swagger
-    async getLocationAlarmStatus(): Promise<any> { // name doesn't matter
+    @ApiOperation({ summary: 'Check Locations Alarms Data' }) // annotating on openapi/swagger
+    @ApiOkResponse({ description: 'The Locations Alarms Data', type: [dto.RescuerLocationsAlarmResponse] }) // annotating on openapi/swagger
+    async getLocationsAlarmStatus(): Promise<any> { // name doesn't matter
         log("This ran")
 
         // get data from database

@@ -16,7 +16,7 @@
 // Sensor Data ( long lat)
 // timestamp, long, lat
 
-// Location table (GPS)
+// Locations table (GPS)
 // last GPS coordinates timestamp
 
 import { Injectable, Inject } from '@nestjs/common';
@@ -30,7 +30,7 @@ import debug from 'debug';
 import { pkg } from '../utils/environment';
 const log = debug(`${pkg.name}:${path.basename(__filename)}`)
 
-type Record = LocationService.Record;
+type Record = LocationsService.Record;
 
 const COLLECTION = CollectionName.Rescuer;
 
@@ -40,7 +40,7 @@ async function ensureIndexes(collection: Collection<Record>) {
 }
 
 @Injectable()
-export class LocationService {
+export class LocationsService {
     constructor(
         @Inject(collectionProvider.provide) private readonly collection: Collection<Record>
     ) { }
@@ -63,7 +63,7 @@ export class LocationService {
     }
 
 }
-export namespace LocationService {
+export namespace LocationsService {
     export interface Record<T = ObjectId> extends BaseRecord<T> {
         timestamp?: string;
         long?: number;
@@ -72,7 +72,7 @@ export namespace LocationService {
         coordY?: number;
         coordInstance?: number;
     }
-    // TODO - make LocationService for database record (1)
+    // TODO - make LocationsService for database record (1)
     // Need one of these for every single collection
 
     export class CommandDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {

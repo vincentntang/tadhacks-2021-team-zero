@@ -12,8 +12,8 @@ import * as settingsService from "./settings.service"
 export { SettingsService } from './settings.service';
 import * as sensorService from "./sensor.service"
 export { SensorService } from './sensor.service';
-import * as locationService from "./location.service"
-export { LocationService } from './location.service';
+import * as locationsService from "./locations.service"
+export { LocationsService } from './locations.service';
 import * as alarmsService from "./alarms.service"
 export { AlarmsService } from './alarms.service';
 
@@ -24,7 +24,7 @@ export const collectionProviders = [
     commandsService,
     settingsService,
     sensorService,
-    locationService,
+    locationsService,
     alarmsService
 ].map(service => service.collectionProvider)
 
@@ -35,6 +35,6 @@ export const collectionServices = [
     commandsService.CommandsService,
     settingsService.SettingsService,
     sensorService.SensorService,
-    locationService.LocationService,
+    locationsService.LocationsService,
     alarmsService.AlarmsService
 ];

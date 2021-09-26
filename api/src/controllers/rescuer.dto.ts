@@ -40,7 +40,7 @@ export class RescuerStatusResponse {
     readonly isAuto!: boolean;
 }
 
-export class RescuerLocationAlarmResponse {
+export class RescuerLocationsAlarmResponse {
     // @ApiProperty()
     // readonly type!: string;
 

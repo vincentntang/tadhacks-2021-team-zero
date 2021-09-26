@@ -16,7 +16,7 @@
 // Sensor Data ( SMOKE TEMPERATURE)
 // timestamp, smoke, temperature
 
-// Location table (GPS)
+// Locations table (GPS)
 // last GPS coordinates timestamp
 
 import { Injectable, Inject } from '@nestjs/common';
