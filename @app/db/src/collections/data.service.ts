@@ -13,7 +13,7 @@
 // Alarm Data (FIRE SOUND)
 // timestamp, type: fire/sound, coordinate system (0,1000)
 
-// Sensor Data ( SMOKE TEMPERATURE)
+// Data Data ( SMOKE TEMPERATURE)
 // timestamp, smoke, temperature
 
 // Locations table (GPS)
@@ -30,7 +30,7 @@ import debug from 'debug';
 import { pkg } from '../utils/environment';
 const log = debug(`${pkg.name}:${path.basename(__filename)}`)
 
-type Record = SensorService.Record;
+type Record = DataService.Record;
 
 const COLLECTION = CollectionName.Rescuer;
 
@@ -40,7 +40,7 @@ async function ensureIndexes(collection: Collection<Record>) {
 }
 
 @Injectable()
-export class SensorService {
+export class DataService {
     constructor(
         @Inject(collectionProvider.provide) private readonly collection: Collection<Record>
     ) { }
@@ -63,14 +63,14 @@ export class SensorService {
     }
 
 }
-export namespace SensorService {
+export namespace DataService {
     export interface Record<T = ObjectId> extends BaseRecord<T> {
         timestamp?: string;
         smoke?: number;
         temperature?: number;
         co2?: number;
     }
-    // TODO - make SensorService for database record (1)
+    // TODO - make DataService for database record (1)
     // Need one of these for every single collection
 
     export class CommandDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {

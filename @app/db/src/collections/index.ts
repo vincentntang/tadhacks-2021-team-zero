@@ -10,8 +10,8 @@ import * as commandsService from "./commands.service"
 export { CommandsService } from './commands.service';
 import * as settingsService from "./settings.service"
 export { SettingsService } from './settings.service';
-import * as sensorService from "./sensor.service"
-export { SensorService } from './sensor.service';
+import * as dataService from "./data.service"
+export { DataService } from './data.service';
 import * as locationsService from "./locations.service"
 export { LocationsService } from './locations.service';
 import * as alarmsService from "./alarms.service"
@@ -23,7 +23,7 @@ export const collectionProviders = [
     // rescuerService
     commandsService,
     settingsService,
-    sensorService,
+    dataService,
     locationsService,
     alarmsService
 ].map(service => service.collectionProvider)
@@ -34,7 +34,7 @@ export const collectionServices = [
     // rescuerService.RescuerService
     commandsService.CommandsService,
     settingsService.SettingsService,
-    sensorService.SensorService,
+    dataService.DataService,
     locationsService.LocationsService,
     alarmsService.AlarmsService
 ];

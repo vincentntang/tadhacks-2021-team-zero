@@ -13,7 +13,7 @@
 // Alarm Data (FIRE SOUND)
 // timestamp, type: fire/sound, coordinate system (0,1000)
 
-// Sensor Data ( long lat)
+// Data Data ( long lat)
 // timestamp, long, lat
 
 // Locations table (GPS)
