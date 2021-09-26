@@ -81,12 +81,20 @@ def get_response_from_id(access_token, conversationId):
 
     if response.status_code == 200:
         # Successful API execution
-        print("messages => " + str(response.json()['messages']))  # messages is a list of id, text, from, startTime, endTime, conversationId, words, phrases, sentiment
+        print("success")
+        # print("messages => " + str(response.json()['messages']))  # messages is a list of id, text, from, startTime, endTime, conversationId, words, phrases, sentiment
     elif response.status_code in responses.keys():
         print(responses[response.status_code])  # Expected error occurred
     else:
         print("Unexpected error occurred. Please contact support@symbl.ai" + ", Debug Message => " + str(response.text))
     return response
+
+def get_transcript(response):
+    """Get transcript in text from response"""
+    output_str = ""
+    for item in response.json()['messages']:
+        output_str += item['text'] + '\n'
+    return output_str
 
 # # Test
 if __name__ == '__main__':
@@ -95,11 +103,11 @@ if __name__ == '__main__':
     APP_SECRET = "474e34625449467238786c73756b793077466849764371503070722d695148594c755138394c6161616c574b5a44444545474870376648427a50344171376779"
     ACCESS_TOKEN = get_access_token(APP_ID, APP_SECRET)
     conversation_object = get_conversation_object_from_file(APP_ID, APP_SECRET, OBJ_PATH)
-    # # To get the message from the conversation
+    # # Get the message from the conversation
     CONVERSATION_ID = str(conversation_object.get_conversation_id())
     response = get_response_from_id(ACCESS_TOKEN, CONVERSATION_ID)
+    transcript = get_transcript(response)
     # # Write to file
-    print(response.json()['messages'])
     with open('./responder/transcript.txt', 'w') as file_out:
-        file_out.write(str(response.json()['messages']))
+        file_out.write(transcript)
     exit()
