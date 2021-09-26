@@ -8,6 +8,7 @@ import * as path from 'path';
 import debug from 'debug';
 import { pkg } from '../utils/environment';
 const log = debug(`${pkg.name}:${path.basename(__filename)}`)
+const axios = require('axios').default;
 
 import { Collections } from '@app/db';
 import { Auth, Password, AuthService, JwtClaims, JwtClaimFromContext } from '@app/auth';
@@ -17,14 +18,18 @@ import * as dto from './rescuer.dto';
 import { ObjectId } from 'mongodb';
 import { RescuerGpsResponse } from './rescuer.dto';
 
+
+const baseRobotUrl = '';
+
 @ApiTags('rescuer')
 @Controller('rescuer')
 export class RescuerController {
     constructor(
-        private readonly accountCollection: Collections.AccountService,
-        private readonly tokenCollection: Collections.TokenService,
-        private readonly authService: AuthService,
-        private readonly tokenCache: TokenCache
+        private readonly commandsCollection: Collections.CommandsService,
+        private readonly settingsCollection: Collections.SettingsService,
+        private readonly sensorCollection: Collections.SensorService,
+        private readonly locationCollection: Collections.LocationService,
+        private readonly alarmsCollection: Collections.AlarmsService,
     ) { }
     @Get("sensor-data")
     @ApiOperation({ summary: 'Check Sensor Data' }) // annotating on openapi/swagger
@@ -93,38 +98,69 @@ export class RescuerController {
     @ApiCreatedResponse({ description: 'Authenticated.', type: dto.RescuerStatusResponse })
     @ApiBadRequestResponse({ description: 'Invalid credentials.' })
     async sendRobotStatus(@Body() body: dto.RescuerStatusRequest): Promise<dto.RescuerStatusResponse> { // Promise is the good response expect. To throw a bad response from an API, use Throw keyword 
-        // and base it on the same error frmo the robot
-        log("this ran");
+        const { isAuto } = body;
+        log("robot-status");
         log(body, "body");
-        if ('isAuto' in body) {
-            // Post a request in Axios await
-            log("isAuto executed")
-        }
 
-        return {
-            isAuto: true
+        // dispatch and send to database, IGNORE FOR NOW DON'T CARE
+        // const params: Parameters<Collections.CommandsService['insertOne']> = [{
+        //     isAuto
+        // }];
+        // const result = await this.commandsCollection.insertOne(...params);
+
+        // dispatch to robot
+        const sendCommand = isAuto ? "Auto" : "Manual"
+        try {
+            const params2: any = {
+                action: sendCommand
+            }
+            const result2 = await axios({
+                method: 'post',
+                url: `${baseRobotUrl}/idk`,
+                data: params2
+            }).then(function (response: any) {
+                console.log(response, "Respsonse that came back!")
+            });
+        } catch (error) {
+            console.error(error);
         }
+        return body
     }
 
     @Post('direction-input')
     @ApiOperation({ summary: 'Direction Input', description: 'Accepts D Pad Key values' })
-    @ApiCreatedResponse({ description: 'Authenticated.', type: dto.RescuerStatusResponse })
+    @ApiCreatedResponse({ description: 'Authenticated.', type: dto.RescuerDirectionInputRequest })
     @ApiBadRequestResponse({ description: 'Invalid credentials.' })
-    async sendDirectionInput(@Body() body: dto.RescuerStatusRequest): Promise<dto.RescuerStatusResponse> { // Promise is the good response expect. To throw a bad response from an API, use Throw keyword 
-
-        // Post this straight to database
-        // Post and reform into the API for the device
-
-        log("this ran");
+    async sendDirectionInput(@Body() body: dto.RescuerDirectionInputRequest): Promise<dto.RescuerDirectionInputRequest> { // Promise is the good response expect. To throw a bad response from an API, use Throw keyword 
+        const { input } = body;
+        log("direction-input");
         log(body, "body");
-        if ('isAuto' in body) {
-            // Post a request in Axios await
-            log("isAuto executed")
-        }
 
-        return {
-            isAuto: true
+        // dispatch and send to database
+        const params: Parameters<Collections.CommandsService['insertOne']> = [{
+            input
+        }];
+        const result = await this.commandsCollection.insertOne(...params);
+
+        // dispatch to robot
+        try {
+            const params2: any = {
+                action: "Direction",
+                direction: input,
+                duration: 5
+            }
+            const result2 = await axios({
+                method: 'post',
+                url: `${baseRobotUrl}/idk`,
+                data: params2
+            }).then(function (response: any) {
+                console.log(response, "Respsonse that came back!")
+            });
+        } catch (error) {
+            console.error(error);
         }
+        return body
+
     }
 
 
