@@ -17,6 +17,9 @@ export default function Navigation() {
                     <Link to="/about" className="nav-link">
                         about
                     </Link>
+                    <Link to="/login" className="nav-link">
+                        login
+                    </Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

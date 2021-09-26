@@ -36,7 +36,7 @@ export default function Test() {
       <div className='player-container my-2'>
         <div className='local-player-wrapper'>
           <p className='local-player-text'>{localVideoTrack && `local, ID =`}{joinState && localVideoTrack ? `${client.uid || ''}` : ''}</p>
-          <MediaPlayer videoTrack={localVideoTrack} audioTrack={undefined}></MediaPlayer>
+          <MediaPlayer videoTrack={localVideoTrack} audioTrack={undefined} style={{width: '600px', height: '450px'}}></MediaPlayer>
         </div>
         {remoteUsers.map(user => (<div className='remote-player-wrapper' key={user.uid}>
             <p className='remote-player-text'>{`ID = ${user.uid}`}</p>

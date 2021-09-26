@@ -185,7 +185,7 @@ const VideoCall = ({ channelName }) => {
             stream={stream}
             fit="contain"
             label="Live Stream"  
-            style={{maxHeight: '800px', minHeight: '500px'}}
+            style={{maxHeight: '800px', minHeight: '600px'}}
             className="mx-auto w-100"
             />
             : <Spinner

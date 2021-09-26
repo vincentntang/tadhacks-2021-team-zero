@@ -8,6 +8,7 @@ import Controls from './Controls'
 import Call from './Call'
 import Messaging from './Messaging'
 import Test from './Test'
+import Login from './Login'
 import Navigation from './components/Navigation'
 import {
     BrowserRouter as Router,
@@ -40,6 +41,9 @@ ReactDOM.render(
                     </Route>
                     <Route path="/test">
                         <Test />
+                    </Route>
+                    <Route path="/login">
+                        <Login />
                     </Route>
                     <Route path="/">
                         <Home />
