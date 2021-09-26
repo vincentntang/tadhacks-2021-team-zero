@@ -42,7 +42,7 @@ def get_access_token(appId, appSecret):
                Debug Message => " + str(response.text))
     return access_token
 
-def get_transcript(app_id, app_secret, obj_type, obj_path):
+def get_conversation_object(app_id, app_secret, obj_type, obj_path):
     """Generate conversation object from audio file or url"""
     # # Process file and get conversation object
     if obj_type == 'file':
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     APP_ID = "4c4f68426c69724362634b5045413665583072324176336f7142324370627956"
     APP_SECRET = "474e34625449467238786c73756b793077466849764371503070722d695148594c755138394c6161616c574b5a44444545474870376648427a50344171376779"
     # ACCESS_TOKEN = get_access_token(APP_ID, APP_SECRET)
-    conversation_object = get_transcript(APP_ID, APP_SECRET, obj_type, obj_path)
+    conversation_object = get_conversation_object(APP_ID, APP_SECRET, obj_type, obj_path)
     # # To get the message from the conversation
     messages = conversation_object.get_messages()
     print(messages)
