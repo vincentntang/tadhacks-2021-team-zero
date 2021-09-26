@@ -73,7 +73,7 @@ export namespace DataService {
     // TODO - make DataService for database record (1)
     // Need one of these for every single collection
 
-    export class CommandDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {
+    export class DataDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {
         @ApiProperty()
         _id: string;
 

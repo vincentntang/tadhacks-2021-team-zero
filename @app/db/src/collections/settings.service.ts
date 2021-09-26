@@ -71,7 +71,7 @@ export namespace SettingsService {
     // TODO - make SettingsService for database record (1)
     // Need one of these for every single collection
 
-    export class CommandDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {
+    export class SettingsDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {
         @ApiProperty()
         _id: string;
 

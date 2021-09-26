@@ -71,7 +71,7 @@ export namespace CommandsService {
     // TODO - make CommandsService for database record (1)
     // Need one of these for every single collection
 
-    export class CommandDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {
+    export class CommandsDbo implements Omit<Record<string>, 'passwordHash' | 'passwordSalt'> {
         @ApiProperty()
         _id: string;
 
