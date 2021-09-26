@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Map from './components/Map'
 import Stream from './Stream'
+import axios from 'axios'
 
 export default function App() {
     const history = useHistory()
@@ -13,6 +14,17 @@ export default function App() {
     const [inCall, setInCall] = useState(false)
     useEffect(() => {
     }, [])
+
+    function setAuto() {
+        axios.post('http://localhost:4000/rescuer/robot-status', {isAuto: 'true'})
+            .then(res => console.log(res.data))
+            .catch(err => console.log('err', err))
+    }
+    function setManual() {
+        axios.post('http://localhost:4000/rescuer/robot-status', {isAuto: 'false'})
+            .then(res => console.log(res.data))
+            .catch(err => console.log('err', err))
+    }
 
     return (
         <>
@@ -35,13 +47,13 @@ export default function App() {
             </Row>
             <Row>
                 <Col className="p-3">
-                    <Button className="mx-auto d-block home-btn" onClick={() => history.push('/controls')}>Auto</Button>
+                    <Button className="mx-auto d-block home-btn" onClick={setAuto}>Auto</Button>
                 </Col>
                 <Col className="p-3">
-                    <Button className="mx-auto d-block home-btn" onClick={() => history.push('/controls')}>Manual</Button>
+                    <Button className="mx-auto d-block home-btn" onClick={setManual}>Manual</Button>
                 </Col>
                 <Col className="p-3">
-                    <Button className="mx-auto d-block home-btn">Map</Button>
+                    <Button className="mx-auto d-block home-btn" disabled>Map</Button>
                 </Col>
             </Row>
             <Map />
